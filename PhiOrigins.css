@@ -44,6 +44,11 @@
     box-shadow: none;
 }
 
+input {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+
 /***********************
   CUSTON BTN VALUES
 ************************/

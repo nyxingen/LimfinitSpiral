@@ -2,7 +2,7 @@
 
 // Variables
 
-var Size = 2; // def = 0.6 ó 2
+
 var NumRadio = 0.2; // def = 0.75 ó 0.2
 var contraste = 0; // 1 = Fondo blanco 0 = Fondo negro
 var PrecisionSpeed = 1000; // More = Slow
@@ -15,7 +15,7 @@ var magic = Random(0,100000000000);
 // Fijos
 var Width = window.innerWidth-20;
 var Height = window.innerHeight-20;
-var SizeSpiral = Size * Height;
+
 var IntervalSpeed = 0.1 * Height;
 var Phi = (1 + Math.sqrt(5)) / 2;
 var color = "black"
@@ -72,8 +72,8 @@ function ActualizarNumeros(){
 
 function start()
 {
-
-
+  var Size = document.getElementById("size").value; // def = 0.6 ó 2
+  var SizeSpiral = Size * Height;
   magic = magic + (Phi / PrecisionSpeed);
   var canvas = document.getElementById('spiral');
   var context = canvas.getContext("2d");
