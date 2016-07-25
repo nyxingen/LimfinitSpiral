@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PhiOrigins</title>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="PhiOrigins.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Iniciando popover -->
+<script type="text/Javascript">
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+
+</head>
+<body style="text-align:center;">
+
+  <!-- OjoOpciones -->
+  <div class="navbar-fixed-top">
+    <span class="glyphicon glyphicon-eye-open  btn-lg" style="color:white; font-size: 30px;" aria-hidden="true" data-toggle="popover" data-placement="bottom" data-html="true" data-content='
+
+    <div style="text-align:center;">
+
+    <h4 id="Numeros" style="color: white;">Jan Ken Pon!</h1>
+    <button type="button" class="btn btn-primary btn-lg outline" onclick="Actualizar()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Randomize</button>
+
+    </div>
+
+
+    '></span>
+  </div>
+
+
+  <div id="Canvas">PhiOrigins</div>
+  <!--<canvas width="1000" height="1050" id="spiral" style="background: black"></canvas>
+  <h1 id="Notificaciones" style="color: #1B1B1B;">Texto!</h1> -->
+  <script type="text/Javascript" src="PhiOrigins.js"></script>
+  <script type="text/Javascript">
+    start();
+  </script>
+
+
+
+
+
+
+</body>
+</html>
