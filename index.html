@@ -28,23 +28,42 @@
 
   <!-- OjoOpciones -->
   <div class="navbar-fixed-top">
-    <span class="glyphicon glyphicon-eye-open  btn-lg" style="color:white; font-size: 30px;" aria-hidden="true" data-toggle="popover" data-placement="bottom" data-html="true" data-content='
-
-    <div style="text-align:center;">
-
-    <h4 id="Numeros" style="color: white;">Jan Ken Pon!</h1>
-    <button type="button" class="btn btn-primary btn-lg outline" onclick="Actualizar()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Randomize</button>
-
-    </div>
-
-
-    '></span>
+    <span class="glyphicon glyphicon-eye-open  btn-lg" style="color:white; font-size: 30px;" aria-hidden="true" data-toggle="modal" data-target="#eye"></span>
   </div>
 
 
+<!-- Modal -->
+  <div class="modal fade" id="eye" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+
+
+          <div style="text-align:center;">
+
+            <!-- Options -->
+
+
+          <input type="checkbox" id="XdivOrmult"> X: * or / <br>
+          <input type="checkbox" id="YdivOrmult"> Y: * or /
+          <h4 id="Numeros" style="color: white;">Jan Ken Pon!</h1>
+          <button type="button" class="btn btn-primary btn-lg outline" onclick="Actualizar()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Randomize</button>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
   <div id="Canvas">PhiOrigins</div>
-  <!--<canvas width="1000" height="1050" id="spiral" style="background: black"></canvas>
-  <h1 id="Notificaciones" style="color: #1B1B1B;">Texto!</h1> -->
   <script type="text/Javascript" src="PhiOrigins.js"></script>
   <script type="text/Javascript">
     start();

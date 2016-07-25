@@ -12,6 +12,15 @@
   color: rgba(255, 255, 255, 1);
 }
 
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(255, 255, 255, 1);
+  }
+
 
 /***********************
   OUTLINE BUTTONS

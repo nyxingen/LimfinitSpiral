@@ -13,9 +13,8 @@ var magic = Random(0,100000000000);
 
 
 // Fijos
-
 var Width = window.innerWidth-20;
-var Height =window.innerHeight-20;
+var Height = window.innerHeight-20;
 var SizeSpiral = Size * Height;
 var IntervalSpeed = 0.1 * Height;
 var Phi = (1 + Math.sqrt(5)) / 2;
@@ -27,7 +26,6 @@ if (contraste == 1){
 
 
 document.body.style.background=color;
-var a = document.getElementById('Notificaciones'); // Para mostrar datos
 var b = document.getElementById('Canvas');
 b.innerHTML = '<canvas width="'+Width+'" height="'+Height+'" id="spiral" style="background: '+color+'"></canvas>';
 
@@ -44,14 +42,22 @@ function Random(min, max)
 function LargoX(a,b){
   var numeroRadio = a;
   var numeroAngulo = Math.cos(b); // Def = Math.cos
-  var numero = numeroRadio / numeroAngulo; //Def = * Int= /
+  if (document.getElementById("XdivOrmult").checked){
+    var numero = numeroRadio / numeroAngulo;
+  } else {
+    var numero = numeroRadio * numeroAngulo; //Def = * Int= /
+  }
   return numero;
 }
 
 function AltoY(a,b){
   var numeroRadio = a;
   var numeroAngulo = Math.sin(b) * Math.cos(b); // Def = Math.sin
-  var numero = numeroRadio * numeroAngulo;
+  if (document.getElementById("YdivOrmult").checked){
+    var numero = numeroRadio / numeroAngulo;
+  } else {
+    var numero = numeroRadio * numeroAngulo; //Def = * Int= /
+  }
   return numero;
 }
 
@@ -60,12 +66,13 @@ function Actualizar(){
 }
 
 function ActualizarNumeros(){
-    var AcNu = document.getElementById('Numeros');
-    AcNu.innerHTML =  magic.toFixed(2);
+    var a = document.getElementById('Numeros');
+    a.innerHTML =  magic.toFixed(2);
 }
 
 function start()
 {
+
 
   magic = magic + (Phi / PrecisionSpeed);
   var canvas = document.getElementById('spiral');
@@ -98,8 +105,6 @@ function start()
     context.fill();
   }
   context.stroke();
-
-  //a.innerHTML = magic;
 
   ActualizarNumeros();
 
