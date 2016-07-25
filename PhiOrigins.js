@@ -6,7 +6,7 @@ var Size = 2; // def = 0.6 ó 2
 var NumRadio = 0.2; // def = 0.75 ó 0.2
 var contraste = 0; // 1 = Fondo blanco 0 = Fondo negro
 var PrecisionSpeed = 1000; // More = Slow
-var experimental = 0; // 1 = Uso de metodos matematicos 0 = original
+var experimental = 1; // 1 = Uso de metodos matematicos 0 = original
 var magic = Random(0,100000000000);
 
 
@@ -52,7 +52,7 @@ function LargoX(a,b){
 
 function AltoY(a,b){
   var numeroRadio = a;
-  var numeroAngulo = Math.sin(b) * Math.cos(b); // Def = Math.sin
+  var numeroAngulo = Math.sin(b); // Def = Math.sin
   if (document.getElementById("YdivOrmult").checked){
     var numero = numeroRadio / numeroAngulo;
   } else {
@@ -79,9 +79,6 @@ function start()
   var context = canvas.getContext("2d");
   var radio = 0.75;
   var angulo = (Phi * magic) / 50;
-  if (experimental == 1){
-    magic = magic + (Math.clz32(magic)/PrecisionSpeed); // cbrt log log10 clz32  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
-  }
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.lineWidth = 1;
   context.lineJoin="round";
@@ -92,8 +89,8 @@ function start()
   for (var n = 0; n < SizeSpiral; n++) {
     radio += NumRadio;
     angulo += (Phi * magic) / 50;
-    if (experimental == 1){
-      angulo = angulo + Math.log10(angulo);
+    if (document.getElementById("experimental").checked){
+      angulo = angulo + Math.log10(angulo);  // cbrt log log10 clz32  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
     }
     var x = canvas.width / 2 + LargoX(radio,angulo);
     var y = canvas.height / 2 + AltoY(radio,angulo);
