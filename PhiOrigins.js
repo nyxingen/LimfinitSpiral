@@ -65,16 +65,21 @@ function Actualizar(){
   magic = Random(0,100000000000);
 }
 
+function ManualSeed(){
+  magic = parseInt(document.getElementById("seed").value);
+}
+
 function ActualizarNumeros(){
     var a = document.getElementById('Numeros');
-    a.innerHTML =  magic.toFixed(2);
+    a.innerHTML =  '<input type="number" id="seed" value="' + magic + '">';
 }
 
 function start()
 {
+  ActualizarNumeros();
   var Size = document.getElementById("size").value; // def = 0.6 ó 2
   var SizeSpiral = Size * Height;
-  magic = magic + (Phi / PrecisionSpeed);
+  magic = parseFloat(document.getElementById("seed").value) + (Phi / PrecisionSpeed); // Animation
   var canvas = document.getElementById('spiral');
   var context = canvas.getContext("2d");
   var radio = 0.75;
@@ -103,7 +108,7 @@ function start()
   }
   context.stroke();
 
-  ActualizarNumeros();
+
 
 }
 
