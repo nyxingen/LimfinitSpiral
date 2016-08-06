@@ -17,10 +17,43 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </head>
-<body style="text-align:center;">
+<body style="text-align:center;" onkeypress="myFunction(event)">
 
 
   <h1 id="Numeros">Jan Ken Pon!</h1>
+
+  <script type="text/Javascript">
+
+
+
+  function RandomColor()
+  {
+      var red = Math.floor(Math.random() * 255);
+      var green = Math.floor(Math.random() * 255);
+      var blue = Math.floor(Math.random() * 255);
+      var decColor =0x1000000+ blue + 0x100 * green + 0x10000 *red ;
+      return '#'+decColor.toString(16).substr(1);
+  }
+
+
+
+
+
+
+  var hola;
+  function myFunction(event) {
+    var x = event.which;
+    hola = x;
+}
+
+
+    var es5 = 4+5;
+    var es4 = 3;
+    var es1 = 0;
+
+    var total = ((es5*5) + (es4*4) + (es1*1)) / (es5+es4+es1);
+
+  </script>
 
 
 </body>

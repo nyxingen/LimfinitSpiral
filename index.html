@@ -24,7 +24,7 @@
 </script>
 
 </head>
-<body style="text-align:center;">
+<body style="text-align:center;" onkeypress="teclado(event)">
 
   <!-- OjoOpciones -->
   <div class="navbar-fixed-top">
@@ -59,9 +59,11 @@
             </div>
 
             <input type="number" id="size" value="2"><br>
+            <input type="number" id="grosor" value="5"><br>
 
           <h4 id="Numeros" style="color: white;">Jan Ken Pon!</h1>
-          <button type="button" class="btn btn-primary btn-lg outline" onclick="Actualizar()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Randomize</button>
+          <button type="button" class="btn btn-primary btn-lg outline" onclick="Actualizar()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Randomize</button></br>
+          <button type="button" class="btn btn-primary btn-lg outline" onclick="Stop()"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> Stop</button>
 
           </div>
 
@@ -80,7 +82,7 @@
   <div id="Canvas">PhiOrigins</div>
   <script type="text/Javascript" src="PhiOrigins.js"></script>
   <script type="text/Javascript">
-    start();
+    draw();
   </script>
 
 
