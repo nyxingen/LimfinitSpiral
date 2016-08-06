@@ -2,9 +2,7 @@
 
 // Variables Globales
 
-
 var NumRadio = 0.2; // def = 0.75 ó 0.2
-var contraste = 0; // 1 = Fondo blanco 0 = Fondo negro
 var PrecisionSpeed = 1000; // More = Slow
 var experimental = 1; // 1 = Uso de metodos matematicos 0 = original
 var magic = Random(0,100000000000);
@@ -21,16 +19,11 @@ var miscolores = 'rgba(255,255,255, 1)';
 
 
 
-// Fijos
-var Width = window.innerWidth-20;
-var Height = window.innerHeight-20;
+
 
 var IntervalSpeed = 0.1 * Height;
 var Phi = (1 + Math.sqrt(5)) / 2;
-var color = "black"
-if (contraste == 1){
-  color = "white";
-}
+
 
 
 
@@ -38,11 +31,7 @@ document.body.style.background=color;
 var b = document.getElementById('Canvas');
 b.innerHTML = '<canvas width="'+Width+'" height="'+Height+'" id="spiral" style="background: '+color+'"></canvas>';
 
-function Random(min, max)
-{
-    var numero = Math.floor( Math.random() * (max - min + 1) + min );
-    return numero;
-}
+
 
 
 
