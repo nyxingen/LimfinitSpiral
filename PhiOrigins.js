@@ -7,7 +7,7 @@ var mouseX = 0;
 // Variables Globales
 
 var zoom = 0.2; // def = 0.75 ó 0.2 Acercamiento real a la espiral.
-var PrecisionSpeed = 50000 / 100000; // More = Slow
+var PrecisionSpeed = 0.003; // More = Slow
 var experimental = 1; // 1 = Uso de metodos matematicos 0 = original
 var seed = Random(0,100000000000);
 var stop = false;
@@ -242,4 +242,4 @@ if (stop == false) {context.stroke();}
 
 draw();
 
- setInterval("animation()",IntervalSpeed);
+ setInterval("animation()",15);
