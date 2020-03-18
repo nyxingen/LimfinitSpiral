@@ -2,10 +2,10 @@
 
 // Variables Globales
 
-var NumRadio = 0.2; // def = 0.75 ó 0.2
-var PrecisionSpeed = 1000; // More = Slow
+var zoom = 0.2; // def = 0.75 ó 0.2 Acercamiento real a la espiral.
+var PrecisionSpeed = 0.003; // More = Slow
 var experimental = 1; // 1 = Uso de metodos matematicos 0 = original
-var magic = Random(0,100000000000);
+var seed = Random(0,100000000000);
 var stop = true;
 var grosor = 0.5;
 var red = 0;
@@ -15,22 +15,29 @@ var ChangeColor_ratio = 0;
 var ChangeColor_i = 0;
 var Size, SizeSpiral,memopathX, memopathY;
 var miscolores = 'rgba(255,255,255, 1)';
-
-
+var Chochou = 0;
+var color200 = 'rgba(255,255,255, 1)';
+var color400 = 'rgba(255,255,255, 1)';
+var color600 = 'rgba(255,255,255, 1)';
+var color800 = 'rgba(255,255,255, 1)';
+var color1000 = 'rgba(255,255,255, 1)';
+var NumLog = 10;
+color200 = 'rgba(255,255,255, 1)';
+color400 = 'rgba(255,255,255, 1)';
+color600 = 'rgba(255,255,255, 1)';
+color800 = 'rgba(255,255,255, 1)';
+color1000 = 'rgba(255,255,255, 1)';
 
 
 
 
 var IntervalSpeed = 0.1 * Height;
-var Phi = (1 + Math.sqrt(5)) / 2;
-
 
 
 
 document.body.style.background=color;
 var b = document.getElementById('Canvas');
 b.innerHTML = '<canvas width="'+Width+'" height="'+Height+'" id="spiral" style="background: '+color+'"></canvas>';
-
 
 
 
@@ -60,24 +67,40 @@ function AltoY(a,b){
 }
 
 function Actualizar(){
-  magic = Random(0,100000000000);
+  seed = Random(0,100000000000);
   draw();
 }
 
 function ManualSeed(){
-  magic = parseInt(document.getElementById("seed").value);
+  seed = parseInt(document.getElementById("seed").value);
 }
 
 function ActualizarNumeros(){
     var a = document.getElementById('Numeros');
-    a.innerHTML =  '<input type="number" id="seed" value="' + magic + '">';
+    a.innerHTML =  '<input type="number" id="seed" value="' + seed + '">';
 }
 
 
 function teclado(event) {
-  var x = event.which;
-  if (x == 97){ Height = Height + 50; } // Tecla A
-  if (x == 115){ Height = Height - 50; } // Tecla S
+  var x = event.key;
+  if (x == "a"){ Height = Height + 50; } // Tecla A
+  if (x == "s"){ Height = Height - 50; } // Tecla S
+  if (x == "q"){ PrecisionSpeed = PrecisionSpeed * 5; } // Tecla A
+  if (x == "w"){ PrecisionSpeed = PrecisionSpeed / 5; } // Tecla S
+  if (x == "e"){ Chochou = ++Chochou; } // Tecla A
+  if (x == "r"){ Chochou = --Chochou; } // Tecla S
+  if (x == "t"){ NumLog++; } // Tecla A
+  if (x == "y"){ NumLog--; } // Tecla S
+  if (x == "z"){ color200 = RandomColor();
+                color400 = RandomColor();
+                color600 = RandomColor();
+                color800 = RandomColor();
+                color1000 = RandomColor(); } // Tecla S
+  if (x == "x"){ color200 = 'rgba(255,255,255, 1)';
+                color400 = 'rgba(255,255,255, 1)';
+                color600 = 'rgba(255,255,255, 1)';
+                color800 = 'rgba(255,255,255, 1)';
+                color1000 = 'rgba(255,255,255, 1)'; } // Tecla S
   draw();
 }
 
@@ -99,12 +122,30 @@ function animation(){
 
 function RandomColor()
 {
-    red = Math.floor(Math.random() * 255);
-    green = Math.floor(Math.random() * 255);
-    blue = Math.floor(Math.random() * 255);
+    red = Math.floor(Math.random() * 255) + 1;
+    green = Math.floor(Math.random() * 255) + 1;
+    blue = Math.floor(Math.random() * 255) + 1;
     //var decColor =0x1000000+ blue + 0x100 * green + 0x10000 *red ;
     //return '#'+decColor.toString(16).substr(1);
     return 'rgba(' +red+','+green+','+blue+', 1)';
+}
+
+function myFunction(choice) {
+  Chochou = choice;
+  draw();
+}
+
+function TipoExperimento(b) // cbrt log log10 clz32 floor https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
+{
+  if (Chochou == 0){return Math.log(b) / Math.log(NumLog);}
+  else if (Chochou == 1){return Math.cbrt(b);}
+  else if (Chochou == 2){return Math.log(b);}
+  else if (Chochou == 3){return Math.clz32(b);}
+  else if (Chochou == 4){return Math.floor(b);}
+  else if (Chochou == 5){return Math.sqrt(b);} // mismo que 2
+  else if (Chochou == 6){return b*b;}
+  else if (Chochou == 7){return b*Math.random();} // no existe
+  else if (Chochou == 8){return Math.tanh(b);}
 }
 
 function ChangeColor()
@@ -125,14 +166,13 @@ function draw()
 {
   ActualizarNumeros();
   Size = document.getElementById("size").value; // def = 0.6 ó 2
-  if (stop){var grosor = (document.getElementById("grosor").value / 10);}
-  else {var grosor = (document.getElementById("grosor").value / 10);}
+  var grosor = (document.getElementById("grosor").value / 10);
   SizeSpiral = Size * Height;
-  magic = parseFloat(document.getElementById("seed").value) + (Phi / PrecisionSpeed); // Animation
+  seed = parseFloat(document.getElementById("seed").value) + PrecisionSpeed; // Animation
   var canvas = document.getElementById('spiral');
   var context = canvas.getContext("2d");
   var radio = 0.75;
-  var angulo = (Phi * magic) / 50;
+  var angulo = seed / 50;
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.lineWidth = grosor;
   context.lineJoin="round";
@@ -141,11 +181,11 @@ function draw()
 
 
   for (var n = 0; n < SizeSpiral; n++) {
-    radio += NumRadio;
-    angulo += (Phi * magic) / 50;
-    if (document.getElementById("experimental").checked){
-      angulo = angulo + Math.log10(angulo);  // cbrt log log10 clz32  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
-    }
+    radio += zoom;
+    angulo += seed / 50;
+
+    angulo = angulo + TipoExperimento(angulo);
+
     var x = canvas.width / 2 + LargoX(radio,angulo);
     var y = canvas.height / 2 + AltoY(radio,angulo);
     context.beginPath();
@@ -154,12 +194,11 @@ function draw()
     memopathX = x;
     memopathY = y;
 
-
-    if (n==200){miscolores = RandomColor();}
-    if (n==400){miscolores = RandomColor();}
-    if (n==600){miscolores = RandomColor();}
-    if (n==800){miscolores = RandomColor();}
-    if (n==1000){miscolores = RandomColor();}
+    if (n==200){miscolores = color200;}
+    if (n==400){miscolores = color400;}
+    if (n==600){miscolores = color600;}
+    if (n==800){miscolores = color800;}
+    if (n==1000){miscolores = color1000;}
 
 //    if (stop) {
   //    var miscolores = RandomColor();
