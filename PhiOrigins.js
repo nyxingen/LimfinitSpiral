@@ -1,12 +1,16 @@
+// Getting 'Info' div in js hands
+var info = document.getElementById('info');
+var mouseY = 0;
+var mouseX = 0;
 
 
 // Variables Globales
 
 var zoom = 0.2; // def = 0.75 ó 0.2 Acercamiento real a la espiral.
-var PrecisionSpeed = 0.003; // More = Slow
+var PrecisionSpeed = 50000 / 100000; // More = Slow
 var experimental = 1; // 1 = Uso de metodos matematicos 0 = original
 var seed = Random(0,100000000000);
-var stop = true;
+var stop = false;
 var grosor = 0.5;
 var red = 0;
 var green = 0;
@@ -161,6 +165,23 @@ function ChangeColor()
     console.log('rgba(' +red.toFixed()+','+green.toFixed()+','+blue.toFixed()+', 1)');
     return 'rgba(' +red.toFixed()+','+green.toFixed()+','+blue.toFixed()+', 1)';
 }
+
+
+
+// Creating function that will tell the position of cursor
+// PageX and PageY will getting position values and show them in P
+function tellPos(p){
+  info.innerHTML = 'Position X : ' + p.pageX + '<br />Position Y : ' + p.pageY;
+  mouseY = p.pageY;
+  mouseX = p.pageX;
+  if (mouseY/Height <= 0.9) {
+  PrecisionSpeed = Math.pow(1-(mouseY/(Height*0.9)), 3);} else {
+    PrecisionSpeed = -Math.pow((mouseY-Height*0.9)/(Height-Height*0.9), 5)/10;
+  }
+}
+addEventListener('mousemove', tellPos, false);
+
+
 
 function draw()
 {
